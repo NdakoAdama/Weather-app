@@ -9,3 +9,11 @@
 #btn-input{
     margin-left: 30px;
 }
+#link-container{
+    text-align: center;
+    padding: 10px;
+}
+
+#link{
+    display: inline-block;
+}
