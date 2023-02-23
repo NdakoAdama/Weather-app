@@ -38,7 +38,7 @@ function showTemperature(response) {
 
   let temperature = Math.round(response.data.main.temp);
   let temperatureElement = document.querySelector(`#temperature`);
-  temperatureElement.innerHTML = `${temperature}℃`;
+  temperatureElement.innerHTML = `${temperature}`;
 }
 
 function searchCity(city) {
