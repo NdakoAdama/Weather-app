@@ -1,19 +1,22 @@
-.card{
-    display: block;
-    margin: 0 auto;
-    margin-top: 30px;
-    padding-left: 20px;
-    width: 30rem;
-    color: blue;
+body{
+    font-family: Arial, sans-serif;
+}
+.weather{
+    max-width: 600px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #dadde1;
+    border-radius: 5px;
+}
+#city{
+    color: #878787;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 28px;
 }
 #btn-input{
     margin-left: 30px;
 }
-#link-container{
-    text-align: center;
-    padding: 10px;
-}
-
 #link{
     display: inline-block;
 }

@@ -11,26 +11,43 @@
 </head>
 <body>
     <div class="Container">
-        <div class="card">
-            <div class="card-body">
+        <div class="weather">
                 <form class="searching" id="formInput">
                     <input type="search" id="searchInput" placeholder="Type a City"/>
                     <input type = "submit" value="search"/>
-                    <button id="btn-input">current</button>
-                     
+                    <button id="btn-input">current</button> 
                 </form>
-            </div>
-                <h3 id="date"></h3>
-       <p><h2 id="city"></h2>
-        <h5 class="temperature" id="temperature">temp</h5>
-            </div>
-          </div>
-    </div>
-   <div id="link-container">
+
+                <h1 id="city"></h1>
+                <ul>
+                    <li><h3 id="date"></h3></li>
+                    <li><h3>Clear</h3></li>
+                </ul>
+
+                <div class="row">
+                    <div class="col-6">
+                        <h5 class="temperature" id="temperature">30℃ | ℉</h5><img
+                        src="img"
+                        alt="image"
+                        /> 
+                    </div>
+                    <div class="col-6">
+                        <ul>
+                            <li>Precipitation: 70%</li>
+                            <li>Humidity: 30%</li>
+                            <li>Wind: 20km/hr</li>
+                        </ul>
+                    </div>
+                </div>
+                <small id="link-container">
      <a id="link" href="https://github.com/NdakoAdama/Weather-app/tree/main">
         Open-source code
     </a> by Adama
-   </div>
+</small>
+        </div>      
+        
+    </div>
+   
     <script src="src/index.js"></script>
 </body>
 </html>
