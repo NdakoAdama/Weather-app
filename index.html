@@ -14,10 +14,19 @@
         <div class="weather-wrapper">
         <div class="weather">
                 <form class="searching" id="formInput">
+                    <div class="row">
+                    <div class="col-6">
                     <input type="search" id="searchInput" placeholder="Type a City"/>
-                    <input type = "submit" value="search"/>
-                    <button id="btn-input">current</button> 
+                </div>
+                <div class="col-3">
+                    <input type = "submit" value="search" class="btn btn-primary"/>
+                    </div>
+                    <div class="col-3">
+                    <button id="btn-input" class="btn btn-success">current</button> 
+                    </div>
+                    </div>
                 </form>
+                
 
                 <h1 id="city"></h1>
                 <ul>
