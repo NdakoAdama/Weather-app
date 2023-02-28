@@ -36,7 +36,10 @@ function showTemperature(response) {
   let city = document.querySelector("#city");
   city.innerHTML = response.data.name;
 
-  let temperature = Math.round(response.data.main.temp);
+
+  celsiusTemperature = response.data.main.temp;
+  console.log(celsiusTemperature);
+  let temperature = Math.round(celsiusTemperature);
   let temperatureElement = document.querySelector(`#temperature`);
   temperatureElement.innerHTML = `${temperature}`;
   let descriptionElement = document.querySelector(`#description`);
@@ -45,11 +48,14 @@ function showTemperature(response) {
   humidityElement.innerHTML =(response.data.main.humidity);
   let windElement = document.querySelector(`#wind`);
   windElement.innerHTML = Math.round(response.data.wind.speed);
+
+
   let iconElement = document.querySelector(`#icon`);
   iconElement.setAttribute(
     "src",  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+
 }
 
 function searchCity(city) {
@@ -77,10 +83,39 @@ function showCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(searchLocation);
 }
 
+
+function displayFarenheit(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+
+function displayCelsius(event) {
+  event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+let celsiusTemperature = null;
+
+
 let currentLocationButton = document.querySelector("#btn-input");
 currentLocationButton.addEventListener("click", showCurrentLocation);
 
 let searchform = document.querySelector(`#formInput`);
 searchform.addEventListener("submit", handleSubmit);
 
+
 searchCity("Minna");
+
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", displayFarenheit);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", displayCelsius);
