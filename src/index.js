@@ -112,10 +112,10 @@ let searchform = document.querySelector(`#formInput`);
 searchform.addEventListener("submit", handleSubmit);
 
 
-searchCity("Minna");
 
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", displayFarenheit);
 
 let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", displayCelsius);
+celsius.addEventListener("click", displayCelsius);celsius.addEventListener("click", displayCelsius);
+searchCity("Minna");
