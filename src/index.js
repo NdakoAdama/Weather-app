@@ -20,6 +20,36 @@ function displayDate(currentDate) {
   let day = days[theDay];
   return `${day}, ${hours}:${minutes}`;
 }
+function displayForecast(){
+let forecastElement = document.querySelector("#forecast");
+let days = ["Fri", "Sat", "Sun", "Mon"];
+
+let forecastHTML = `<div class"row">`;
+days.forEach(function (day) {
+  forecastHTML =
+    forecastHTML +
+    `
+                        <div class="col-2">
+                        <div class="forecast-date">
+                            ${day}
+                        </div>
+                                <img
+                                src="https://img.freepik.com/free-vector/hand-drawn-iranian-woman-illustration_23-2149857234.jpg?w=740&t=st=1677842278~exp=1677842878~hmac=0cd146301d35c7b721dfaf306bda7479e81958d7fa05849a6dba08b236b3e950"
+                                width="40px"
+                                alt=""
+                                />
+                                <div class="forecast-temperature">
+                                    <span class="forecast-tempMax">20°</span>
+                                    <span class="forecast-tempMin">18°</span>
+                            </div>
+                     </div>
+                    </div>
+                    `;
+});
+ forecastHTML = forecastHTML + `</div>`;
+ forecastElement.innerHTML = forecastHTML;
+ console.log(forecastHTML);
+}
 
 let dateElement = document.querySelector(`#date`);
 let currentTime = new Date();
@@ -119,3 +149,5 @@ fahrenheit.addEventListener("click", displayFarenheit);
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", displayCelsius);
 searchCity("Minna");
+
+displayForecast();
