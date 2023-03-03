@@ -52,3 +52,17 @@ li{
 .weatherTemp .active:hover {
   text-decoration: none;
 }
+.weather-forecast{
+    margin-top: 20px;
+}
+.forecast-date{
+    padding-bottom: 10px;
+    font-size: 16px;
+}
+.forecast-temperature{
+    padding-top: 10px;
+    font-size: 13px;
+}
+.forecast-tempMin{
+    opacity: 0.5;
+}
