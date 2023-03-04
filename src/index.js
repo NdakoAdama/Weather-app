@@ -20,16 +20,17 @@ function displayDate(currentDate) {
   let day = days[theDay];
   return `${day}, ${hours}:${minutes}`;
 }
-function displayForecast(){
-let forecastElement = document.querySelector("#forecast");
-let days = ["Fri", "Sat", "Sun", "Mon"];
+function displayForecast(response) {
+  console.log(response.data);
+  let forecastElement = document.querySelector("#forecast");
+  let days = ["Fri", "Sat", "Sun", "Mon"];
 
-let forecastHTML = `<div class"row">`;
-days.forEach(function (day) {
-  forecastHTML =
-    forecastHTML +
-    `
-                        <div class="col-2">
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+                        <div class="col-3">
                         <div class="forecast-date">
                             ${day}
                         </div>
@@ -42,13 +43,13 @@ days.forEach(function (day) {
                                     <span class="forecast-tempMax">20°</span>
                                     <span class="forecast-tempMin">18°</span>
                             </div>
-                     </div>
+                
                     </div>
                     `;
-});
- forecastHTML = forecastHTML + `</div>`;
- forecastElement.innerHTML = forecastHTML;
- console.log(forecastHTML);
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+  // console.log(forecastHTML);
 }
 
 let dateElement = document.querySelector(`#date`);
@@ -60,6 +61,16 @@ function search(event) {
   let cityElement = document.querySelector(`#city`);
   let searchBar = document.querySelector(`#searchInput`);
   cityElement.innerHTML = searchBar.value;
+}
+
+function getForecast(coordinate){
+  console.log(coordinate);
+  let apiKey = `ffct483b2ba1b3b02645bob79a44fb58`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinate.lon}&lat=${coordinate.lat}&key=${apiKey}&units=metric`;
+  
+  // let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinate.lat}&lon=${coordinate.lon}&exclude={part}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
 }
 
 function showTemperature(response) {
@@ -80,18 +91,23 @@ function showTemperature(response) {
   windElement.innerHTML = Math.round(response.data.wind.speed);
 
 
+
   let iconElement = document.querySelector(`#icon`);
   iconElement.setAttribute(
     "src",  `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
+
+  getForecast(response.data.coord);
+
 }
 
 function searchCity(city) {
-  let apiKey = `806822236a205c516940bf3338b739e0`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-  axios.get(`${apiUrl}`).then(showTemperature);
+   let apiKey = `806822236a205c516940bf3338b739e0`;
+   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+   console.log(apiUrl);
+   axios.get(`${apiUrl}`).then(showTemperature);
 }
 
 function handleSubmit(event) {
@@ -101,8 +117,8 @@ function handleSubmit(event) {
 }
 
 function searchLocation(position) {
-  let apiKey = `806822236a205c516940bf3338b739e0`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+   let apiKey = `806822236a205c516940bf3338b739e0`;
+   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
   console.log(apiUrl);
 
   axios.get(`${apiUrl}`).then(showTemperature);
@@ -150,4 +166,4 @@ let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", displayCelsius);
 searchCity("Minna");
 
-displayForecast();
+// displayForecast();
