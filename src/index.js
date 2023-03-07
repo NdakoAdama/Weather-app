@@ -21,27 +21,29 @@ function displayDate(currentDate) {
   return `${day}, ${hours}:${minutes}`;
 }
 function displayForecast(response) {
-  console.log(response.data);
+  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let days = ["Fri", "Sat", "Sun", "Mon"];
 
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
+  forecast.forEach(function (forecastDay) {
+    console.log(forecastDay.condition.icon_url);
     forecastHTML =
       forecastHTML +
       `
                         <div class="col-3">
                         <div class="forecast-date">
-                            ${day}
+                            ${forecastDay.time}
                         </div>
                                 <img
-                                src="https://img.freepik.com/free-vector/hand-drawn-iranian-woman-illustration_23-2149857234.jpg?w=740&t=st=1677842278~exp=1677842878~hmac=0cd146301d35c7b721dfaf306bda7479e81958d7fa05849a6dba08b236b3e950"
+                                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons${forecastDay.condition.icon_url}.png"
                                 width="40px"
-                                alt=""
+                                alt="icon"
                                 />
                                 <div class="forecast-temperature">
-                                    <span class="forecast-tempMax">20°</span>
-                                    <span class="forecast-tempMin">18°</span>
+                                    <span class="forecast-tempMax">${Math.round(forecastDay.temperature.maximum)}°</span>
+                                    <span class="forecast-tempMin">${Math.round(forecastDay.temperature.minimum)}°</span>
                             </div>
                 
                     </div>
