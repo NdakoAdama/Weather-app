@@ -20,34 +20,47 @@ function displayDate(currentDate) {
   let day = days[theDay];
   return `${day}, ${hours}:${minutes}`;
 }
+
+function theTime(time){
+let date = new Date(time * 1000);
+let day = date.getDay();
+let days = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+return days[day];
+}
 function displayForecast(response) {
   console.log(response.data.daily);
   let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let days = ["Fri", "Sat", "Sun", "Mon"];
+  
 
   let forecastHTML = `<div class="row">`;
-  forecast.forEach(function (forecastDay) {
-    console.log(forecastDay.condition.icon_url);
-    forecastHTML =
-      forecastHTML +
-      `
-                        <div class="col-3">
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6){
+      console.log(forecastDay.condition.icon_url);
+      forecastHTML =
+        forecastHTML +
+        `
+                        <div class="col-2">
                         <div class="forecast-date">
-                            ${forecastDay.time}
+                            ${theTime(forecastDay.time)}
                         </div>
                                 <img
-                                src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons${forecastDay.condition.icon_url}.png"
+                                src="${forecastDay.condition.icon_url}"
                                 width="40px"
                                 alt="icon"
                                 />
                                 <div class="forecast-temperature">
-                                    <span class="forecast-tempMax">${Math.round(forecastDay.temperature.maximum)}°</span>
-                                    <span class="forecast-tempMin">${Math.round(forecastDay.temperature.minimum)}°</span>
+                                    <span class="forecast-tempMax">${Math.round(
+                                      forecastDay.temperature.maximum
+                                    )}°</span>
+                                    <span class="forecast-tempMin">${Math.round(
+                                      forecastDay.temperature.minimum
+                                    )}°</span>
                             </div>
                 
                     </div>
                     `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
